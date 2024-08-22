@@ -6,7 +6,7 @@
     Un sistema de punto de venta
   </div>
   <!-- Default to the left -->
-  <strong>Copyright &copy; 2024 <a href="https://ekesoft.net">EliasCassal </a>.</strong> Derechos reservados
+  <strong>Copyright &copy; 2024 <a href="https://ekesoft.net">AdminLTE</a>all right reservet </strong> 
 </footer>
 </div>
 <!-- ./wrapper -->

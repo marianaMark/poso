@@ -22,15 +22,15 @@ class ControladorCliente
   }
 
   static public function ctrRegCliente()
-  {
-    require "../modelo/clienteModelo.php";
+  {    require "../modelo/clienteModelo.php";
+   $data = array(
+      "razon_social_cliente" => $_POST["razon_social_cliente"],
+      "nombre_cliente" => $_POST["nombre_cliente"],
+      "direcion_cliente" => $_POST["direcion_cliente"],
+      "telefono_cliente" => $_POST["telefono_cliente"],
+      "nit_ci_cliente" => $_POST["nit_ci_cliente"],
+      "email_cliente" => $_POST["email_cliente"],
 
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-
-    $data = array(
-      "logincliente" => $_POST["login"],
-      "password" => $password,
-      "perfil" => "Moderador"
     );
 
     $respuesta = ModeloCliente::mdlRegCliente($data);
@@ -45,21 +45,13 @@ class ControladorCliente
   }
 
   static function ctrEditcliente()
-  {
-    require "../modelo/clienteModelo.php";
-
-    if ($_POST["password"] == $_POST["passActual"]) {
-      $password = $_POST["password"];
-    } else {
-      $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    }
-
-
-    $data = array(
-      "password" => $password,
-      "id" => $_POST["idcliente"],
-      "perfil" => $_POST["perfil"],
-      "estado" => $_POST["estado"]
+  { $data = array(
+      "razon_social_cliente" => $_POST["razon_social_cliente"],
+      "nombre_cliente" => $_POST["nombre_cliente"],
+      "direcion_cliente" => $_POST["direcion_cliente"],
+      "telefono_cliente" => $_POST["telefono_cliente"],
+      "nit_ci_cliente" => $_POST["nit_ci_cliente"],
+      "email_cliente" => $_POST["email_cliente"],
     );
 
     ModeloCliente::mdlEditCliente($data);
