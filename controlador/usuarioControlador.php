@@ -2,11 +2,9 @@
 $ruta = parse_url($_SERVER["REQUEST_URI"]);
 
 if (isset($ruta["query"])) {
-  if (
-    $ruta["query"] == "ctrRegUsuario" ||
+  if ( $ruta["query"] == "ctrRegUsuario" ||
     $ruta["query"] == "ctrEditUsuario" ||
-    $ruta["query"] == "ctrEliUsuario"
-  ) {
+    $ruta["query"] == "ctrEliUsuario") {
     $metodo = $ruta["query"];
     $usuario = new ControladorUsuario();
     $usuario->$metodo();
@@ -16,17 +14,13 @@ if (isset($ruta["query"])) {
 class ControladorUsuario
 {
 
-  static public function ctrIngresoUsuario()
-  {
+  static public function ctrIngresoUsuario(){
+    if (isset($_POST["usuario"])){
+         $usuario = $_POST["usuario"];
+         $password = $_POST["password"];
+         $resultado=ModeloUsuario::mdlAccesoUsuario($usuario);
 
-    if (isset($_POST["usuario"])) {
-
-      $usuario = $_POST["usuario"];
-      $password = $_POST["password"];
-
-      $resultado = ModeloUsuario::mdlAccesoUsuario($usuario);
-
-      if ($resultado["login_usuario"] == $usuario && password_verify($password, $resultado["password"]) && $resultado["estado"] == 1) {
+      if($resultado["login_usuario"] == $usuario && $password==$resultado["password"] && $resultado["estado"]==1){
 
         $_SESSION["ingreso"] = $resultado["login_usuario"];
         $_SESSION["perfil"] = $resultado["perfil"];

@@ -34,15 +34,19 @@ static public function mdlRegUsuario($data){
 }
 
 static public function mdlActualizarAcceso($fechaHora, $id){
-    $stmt=Conexion::conectar()->prepare("update usuario set untimo set untimo_login='$fechaHora' where id_usuario='id_usuario='$id'");
-    if ($stmt->execute()){
-        return "ok";
-    }else{
-        return "error";
-    }
-    
-  
+  $stmt = Conexion::conectar()->prepare("UPDATE usuario SET ultimo_login = :fechaHora WHERE id_usuario = :id");
+  $stmt->bindParam(":fechaHora", $fechaHora, PDO::PARAM_STR);
+  $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+
+  if ($stmt->execute()) {
+      return "ok";
+  } else {
+      return "error";
+  }
+
+  $stmt = null; // Cerrar la conexión
 }
+
 static public function mdlInfoUsuario($id){
     $stmt=Conexion::conectar()->prepare("select * from usuario where id_usuario=$id");
     $stmt->execute();
