@@ -24,7 +24,7 @@
                 <th>#</th>
                 <th>razon_social</th>
                 <th>nombre</th>
-                <th>direcion</th>
+                <th>direccion</th>
                 <th>telefono</th>
                 <th>nit_ci</th>
                 <th>email</th>
@@ -43,7 +43,7 @@
                 <td><?php echo $value["id_cliente"];?></td>
                 <td><?php echo $value["razon_social_cliente"];?></td>
                 <td><?php echo $value["nombre_cliente"];?></td>
-                <td><?php echo $value["direcion_cliente"];?></td>
+                <td><?php echo $value["direccion_cliente"];?></td>
                 <td><?php echo $value["telefono_cliente"];?></td>
                 <td><?php echo $value["nit_ci_cliente"];?></td>
                 <td><?php echo $value["email_cliente"];?></td>
@@ -51,10 +51,10 @@
                
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-secondary" onclick="MEditCliente(<?php echo $value["id_cliente"];?>)">
+                    <button class="btn btn-secondary" onclick="MEditCliente(<?php echo $value['id_cliente']; ?>)">
                       <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger" onclick="MEliCliente(<?php echo $value["id_cliente"];?>)">
+                    <button class="btn btn-danger" onclick="MEliCliente(<?php echo $value['id_cliente']; ?>)">
                       <i class="fas fa-trash"></i>
                     </button>
                   </div>

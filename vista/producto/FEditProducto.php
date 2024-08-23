@@ -1,10 +1,10 @@
 <?php
-require_once "../../controlador/usuarioControlador.php";
-require_once "../../modelo/usuarioModelo.php";
+require_once "../../controlador/productoControlador.php";
+require_once "../../modelo/productoModelo.php";
 
 $id=$_GET["id"];
 
-$usuario=ControladorUsuario::ctrInfoUsuario($id);
+$usuario=ControladorProducto::ctrInfoProducto($id);
 
 ?>
 <form action="" id="FEditUsuario">
@@ -37,7 +37,7 @@ $usuario=ControladorUsuario::ctrInfoUsuario($id);
       </select>
     </div>
     <div class="form-group">
-     <label for="">Estado</label>
+     <label for="">disponible</label>
       <div class="row">
         <div class="col-sm-6">
           <div class="custom-control custom-radio">
@@ -48,7 +48,7 @@ $usuario=ControladorUsuario::ctrInfoUsuario($id);
         <div class="col-sm-6">
           <div class="custom-control custom-radio">
             <input class="custom-control-input" type="radio" id="estadoInactivo" name="estado" <?php if($usuario["estado"]=="0"):?>checked<?php endif;?> value="0">
-            <label for="estadoInactivo" class="custom-control-label">Inactivo</label>
+            <label for="estadoInactivo" class="custom-control-label">agotado</label>
           </div>  
         </div>
       </div>
