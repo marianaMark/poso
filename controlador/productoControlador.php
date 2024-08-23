@@ -26,13 +26,17 @@ class ControladorProducto
   {
     require "../modelo/productoModelo.php";
 
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
     $data = array(
-      "loginproducto" => $_POST["login"],
-      "password" => $password,
-      "perfil" => "Moderador"
-    );
+      "cod_producto" => $_POST["cod_producto"],
+      "nombre_producto_sin" => $_POST["nombre_producto_sin"],
+      "nombre_producto" => $_POST["nombre_producto"],
+      "precio_producto" => $_POST["precio_producto"],
+      "unidad_medida" => $_POST["unidad_medida"],
+      "unidad_medida_sin" => $_POST["unidad_medida_sin"],
+      "imagen_producto" => $_POST["imagen_producto"],
+      "disponible" => $_POST["disponible"]
+  );
 
     $respuesta = ModeloProducto::mdlRegproducto($data);
 
@@ -49,20 +53,18 @@ class ControladorProducto
   {
     require "../modelo/productoModelo.php";
 
-    if ($_POST["password"] == $_POST["passActual"]) {
-      $password = $_POST["password"];
-    } else {
-      $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    }
-
-
     $data = array(
-      "password" => $password,
-      "id" => $_POST["idproducto"],
-      "perfil" => $_POST["perfil"],
-      "estado" => $_POST["estado"]
-    );
-
+      "cod_producto" => $_POST["cod_producto"],
+      "nombre_producto_sin" => $_POST["nombre_producto_sin"],
+      "nombre_producto" => $_POST["nombre_producto"],
+      "precio_producto" => $_POST["precio_producto"],
+      "unidad_medida" => $_POST["unidad_medida"],
+      "unidad_medida_sin" => $_POST["unidad_medida_sin"],
+      "imagen_producto" => $_POST["imagen_producto"],
+      "disponible" => $_POST["disponible"],
+      "id_producto" => $_POST["id_producto"] 
+  );
+  
     ModeloProducto::mdlEditProducto($data);
     $respuesta = ModeloProducto::mdlEditProducto($data);
 

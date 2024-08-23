@@ -16,24 +16,17 @@ class ModeloProducto{
   }
 
   static public function mdlRegProducto($data){
-    $loginProducto=$data["loginProducto"];
-    $password=$data["password"];
-    $perfil=$data["perfil"];
+    $codProducto = $data["cod_producto"];
+$nombreProductoSin = $data["nombre_producto_sin"];
+$nombreProducto = $data["nombre_producto"];
+$precioProducto = $data["precio_producto"];
+$unidadMedida = $data["unidad_medida"];
+$unidadMedidaSin = $data["unidad_medida_sin"];
+$imagenProducto = $data["imagen_producto"];
+$disponible = $data["disponible"];
 
-    $stmt=Conexion::conectar()->prepare("insert into producto(login_producto, password, perfil) values('$loginProducto', '$password', '$perfil')");
-
-    if($stmt->execute()){
-      return "ok";
-    }else{
-      return "error";
-    }
-
-    $stmt->close();
-    $stmt->null();
-  }
-
-  static public function mdlActualizarAcceso($fechaHora, $id){
-    $stmt=Conexion::conectar()->prepare("update producto set ultimo_login='$fechaHora' where id_producto='$id'");
+$stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, nombre_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto, disponible) 
+VALUES ('$codProducto', '$nombreProductoSin', '$nombreProducto', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto', '$disponible')");
 
     if($stmt->execute()){
       return "ok";
@@ -44,6 +37,8 @@ class ModeloProducto{
     $stmt->close();
     $stmt->null();
   }
+
+ 
 
   static public function mdlInfoProducto($id){
     $stmt=Conexion::conectar()->prepare("select * from producto where id_producto=$id");
@@ -57,12 +52,32 @@ class ModeloProducto{
   
   static public function mdlEditProducto($data){
 
-    $password=$data["password"];
-    $perfil=$data["perfil"];
-    $estado=$data["estado"];
-    $id=$data["id"];
+      $cod_producto = $data["cod_producto"];
+      $nombre_producto_sin = $data["nombre_producto_sin"];
+      $nombre_producto = $data["nombre_producto"];
+      $precio_producto = $data["precio_producto"];
+      $unidad_medida = $data["unidad_medida"];
+      $unidad_medida_sin = $data["unidad_medida_sin"];
+      $imagen_producto = $data["imagen_producto"];
+      $disponible = $data["disponible"];
+      $id_producto = $data["id_producto"];
 
-    $stmt=Conexion::conectar()->prepare("update producto set password='$password', perfil='$perfil', estado='$estado' where id_producto=$id");
+
+      $stmt = Conexion::conectar()->prepare("
+      UPDATE producto 
+      SET 
+          cod_producto = ' $cod_producto', 
+          nombre_producto_sin = ' $nombre_producto_sin', 
+          nombre_producto = '$nombre_producto', 
+          precio_producto = ' $precio_producto ', 
+          unidad_medida = '$unidad_medida', 
+          unidad_medida_sin = '$unidad_medida_sin', 
+          imagen_producto = '$imagen_producto', 
+          disponible = '$disponible' 
+      WHERE 
+          id_producto =  $id_producto
+  ");
+  
 
     if($stmt->execute()){
       return "ok";
