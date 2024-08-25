@@ -11,8 +11,8 @@
             <input type="text" class="form-control" name="cod_producto" id="cod_producto" maxlength="50">
         </div>
         <div class="form-group">
-            <label for="cod_producto_sin">Código del Producto (SIN)</label>
-            <input type="number" class="form-control" name="cod_producto_sin" id="cod_producto_sin" min="0">
+            <label for="nombre_producto_sin">Código del Producto (SIN)</label>
+            <input type="number" class="form-control" name="nombre_producto_sin" id="nombre_producto_sin" min="0">
         </div>
         <div class="form-group">
             <label for="nombre_producto">Nombre del Producto</label>

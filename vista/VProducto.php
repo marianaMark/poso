@@ -20,7 +20,7 @@
               <tr>
                     <th>#</th>
                     <th>C.Producto</th>
-                    <th>C.Producto SIN</th>
+                    <th>M.Producto SIN</th>
                     <th>N.Producto</th>
                     <th>P.Producto</th>
                     <th>U.Medida</th>
@@ -47,7 +47,7 @@
                 <td><?php echo $value["unidad_medida_sin"]; ?></td>
                 <td><?php echo $value["imagen_producto"]; ?></td>
                 <td><?php echo $value["disponible"]; ?></td>
-
+               
                 <td>
                     <div class="btn-group">
                       <button class="btn btn-secondary" onclick="FEditProducto(<?php echo $value['id_producto']; ?>)">
