@@ -31,6 +31,7 @@ session_start();
          $_GET["ruta"]=="salir"||
          $_GET["ruta"]=="VCliente"||
          $_GET["ruta"]=="VProducto"||
+         $_GET["ruta"]=="FormVenta"||
          $_GET["ruta"]=="SinCatalogos"||
          $_GET["ruta"]=="VUsuario"){
         include "asideMenu.php";

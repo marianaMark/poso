@@ -38,8 +38,7 @@
 <script src="assest/js/usuario.js"></script>
 <script src="assest/js/cliente.js"></script>
 <script src="assest/js/producto.js"></script>
-<!--<script src="assest/js/producto.js"></script>
-<script src="assest/js/factura.js"></script>-->
+<script src="assest/js/factura.js"></script>
 
 <!--===============
 seccion de modals

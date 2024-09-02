@@ -1,4 +1,7 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
@@ -125,7 +128,7 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-                <a href="VUsuario" class="nav-link">
+                <a href="FormVenta" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Emitir Factura</p>
                 </a>
@@ -146,3 +149,5 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+  </body>
+  </html>
