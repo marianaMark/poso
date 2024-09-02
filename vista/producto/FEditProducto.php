@@ -49,27 +49,42 @@ $producto=ControladorProducto::ctrInfoProducto($id);
         </div>
 
         <div class="form-group">
-            <label for="imagen_producto">Imagen del Producto</label>
-            <input type="text" class="form-control" name="imagen_producto" id="imagen_producto" value="<?php echo $producto["imagen_producto"]; ?>">
+    <label for="imgProducto">Imagen <span class="text-muted">(Peso máximo 10MB JPG, PNG)</span></label>
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="imgProducto" name="imgProducto" onchange="previsualizar()">
+            <label class="custom-file-label" for="imgProducto">Elegir archivo</label>
         </div>
+        <div class="input-group-append">
+            <span class="input-group-text">Subir</span>
+        </div>
+    </div>
+    <!-- Previsualización de la imagen -->
+    <div class="mt-3">
+        <img id="img-preview" src="<?php echo isset($producto['imagen_producto']) && $producto['imagen_producto'] ? 'assest/dist/img/mercancia/' . $producto['imagen_producto'] : 'assest/dist/img/product_default.png'; ?>" alt="Vista previa de la imagen" style="max-width: 100px; max-height: 100px;" class="img-thumbnail">
+    </div>
+</div>
 
-        <div class="form-group">
-            <label for="disponible">Disponibilidad</label>
-            <div class="row">
-        <div class="col-sm-6">
-          <div class="custom-control custom-radio">
-            <input class="custom-control-input" type="radio" id="estadoActivo" name="estado" <?php if($usuario["estado"]=="1"):?>checked<?php endif;?> value="1">
-            <label for="estadoActivo" class="custom-control-label">Activo</label>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="custom-control custom-radio">
-            <input class="custom-control-input" type="radio" id="estadoInactivo" name="estado" <?php if($usuario["estado"]=="0"):?>checked<?php endif;?> value="0">
-            <label for="estadoInactivo" class="custom-control-label">Inactivo</label>
-          </div>  
-        </div>
+<div class="form-group">
+<label for="" class="">DISPONIBILIDAD</label>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="custom-control custom-radio">
+        <input type="radio" class="custom-control-input" name="disponible" id="disponibleActivo" 
+        <?php if($producto["disponible"] == "1"): ?>checked<?php endif; ?>value="1"> 
+        <label for="disponibleActivo" class="custom-control-label">DISPONIBLE</label>
       </div>
-        </div>
+    </div>
+      
+    <div class="col-sm-6">
+      <div class="custom-control custom-radio">
+        <input type="radio" class="custom-control-input" name="disponible" id="disponibleInactivo"
+        <?php if($producto["disponible"] == "0"): ?>checked<?php endif; ?> value="0"> 
+        <label for="disponibleInactivo" class="custom-control-label">agotado</label>
+      </div>
+    </div>
+  </div>
+</div>
 
         <!-- Campo oculto para el ID del producto -->
         <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $producto['id_producto']; ?>">
@@ -91,18 +106,32 @@ $(function () {
   });
   $('#FEditProducto').validate({
     rules: {
-      login: {
+      cod_producto: {
         required: true,
         minlength: 3
       },
-      password: {
+      nombre_producto_sin: {
+        required: true,
+        minlength: 3,
+        number:true
+      },
+      nombre_producto: {
         required: true,
         minlength: 3
       },
-      vrPassword: {
+      precio_producto: {
         required: true,
-        minlength: 3
+        minlength: 1
       },
+      unidad_medida: {
+        required: true,
+        minlength: 1
+      },
+      unidad_medida_sin: {
+        required: true,
+        minlength: 1
+      },
+     
     },
   
     errorElement: 'span',

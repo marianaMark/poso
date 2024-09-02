@@ -31,9 +31,32 @@
             <input type="number" class="form-control" name="unidad_medida_sin" id="unidad_medida_sin" min="0">
         </div>
         <div class="form-group">
-            <label for="imagen_producto">Imagen del Producto</label>
-            <input type="text" class="form-control" name="imagen_producto" id="imagen_producto" maxlength="50">
-        </div>
+                <label for="imgProducto">Imagen <span class="text-muted">(Peso máximo 10MB JPG, PNG)</span></label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <!--<input type="file" class="custom-file-input" id="imgProducto" name="imgProducto" onchange="previsualizar()">--->
+                        <input type="file" class="custom-file-input" id="imgProducto" name="imgProducto" onchange="previsualizar()">
+                        <!--<img id="img-preview" src="" alt="Vista previa de la imagen" style="max-width: 100px; max-height: 100px;">--->
+
+                        
+                        <label class="custom-file-label" for="imgProducto">Elegir archivo</label>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Subir</span>
+                    </div>
+                </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-12 text-center mt-3">
+              <img id="img-preview" src="assest/dist/img/product_default.png" alt="Previsualización" width="150" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">
+
+              </div>
+          </div>
+      </div>
+
         <div class="form-group">
             <label for="disponible">Disponible</label>
             <select class="form-control" name="disponible" id="disponible">
@@ -59,18 +82,32 @@ $(function () {
   });
   $('#FRegProducto').validate({
     rules: {
-      login: {
+      cod_producto: {
         required: true,
         minlength: 3
       },
-      password: {
+      nombre_producto_sin: {
+        required: true,
+        minlength: 3,
+        number:true
+      },
+      nombre_producto: {
         required: true,
         minlength: 3
       },
-      vrPassword: {
+      precio_producto: {
         required: true,
-        minlength: 3
+        minlength: 1
       },
+      unidad_medida: {
+        required: true,
+        minlength: 1
+      },
+      unidad_medida_sin: {
+        required: true,
+        minlength: 1
+      },
+     
     },
   
     errorElement: 'span',

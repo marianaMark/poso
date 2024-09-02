@@ -17,15 +17,15 @@
         <div class="card-body">
           <table id="example1" class="table table-bordered table-striped">
         <thead>
-              <tr>
-                    <th>#</th>
+        <tr>
+                     <!---<th>#</th>--->
                     <th>C.Producto</th>
-                    <th>M.Producto SIN</th>
-                    <th>N.Producto</th>
-                    <th>P.Producto</th>
-                    <th>U.Medida</th>
-                    <th>U.Medida SIN</th>
-                    <th>I.Producto</th>
+                    <th>C.Producto SIN</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                   <!---<th>U.Medida</th>--->
+                   <!--- <th>U.Medida SIN</th>--->
+                    <th>Imagen</th>
                     <th>Disponibilidad</th>
                     <td>
                       <button class="btn btn-primary" onclick="MNuevoProducto()">Nuevo</button>
@@ -38,22 +38,53 @@
               foreach($producto as $value) {
                 ?>
                 <tr>
-                <td><?php echo $value["id_producto"]; ?></td>
+                 <!---<td><?php echo $value["id_producto"]; ?></td>--->
                 <td><?php echo $value["cod_producto"]; ?></td>
                 <td><?php echo $value["nombre_producto_sin"]; ?></td>
                 <td><?php echo $value["nombre_producto"]; ?></td>
                 <td><?php echo $value["precio_producto"]; ?></td>
-                <td><?php echo $value["unidad_medida"]; ?></td>
-                <td><?php echo $value["unidad_medida_sin"]; ?></td>
-                <td><?php echo $value["imagen_producto"]; ?></td>
-                <td><?php echo $value["disponible"]; ?></td>
-               
+                <!--- <td><?php echo $value["unidad_medida"]; ?></td>--->
+                <!--- <td><?php echo $value["unidad_medida_sin"]; ?></td>--->
+                <td>
+                <?php
+                   if($value["imagen_producto"]==""){
+                 ?>
+                 
+                 <img src="assest/dist/img/product_default.png" alt="" width="50" class="img-thumbail">
+                 
+
+                <?php
+                }else{
+                ?>
+                 <img src="assest/dist/img/mercancia/<?php echo $value["imagen_producto"];?>" alt="" width="50" class="img-thumbail">
+                <?php
+                }
+                ?>
+                
+                </td>
+                <td><?php
+                    if( $value["disponible"]==1){
+                      ?>
+                      <span class="badge badge-success">disponible</span>
+
+                    <?php
+                    }else{
+                      ?>
+                      <span class="badge badge-danger">agotado</span>
+
+                    <?php
+                    }
+                    ?></td>
+
                 <td>
                     <div class="btn-group">
+                    <button class="btn btn-info" onclick="VerProducto(<?php echo $value['id_producto']; ?>)">
+                        <i class="fas fa-eye"></i>
+                      </button>
                       <button class="btn btn-secondary" onclick="FEditProducto(<?php echo $value['id_producto']; ?>)">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <button class="btn btn-danger" onclick="MElitProducto(<?php echo $value['id_producto']; ?>)">
+                      <button class="btn btn-danger" onclick="MEliProducto(<?php echo $value['id_producto']; ?>)">
                         <i class="fas fa-trash"></i>
                       </button>
                     </div>
