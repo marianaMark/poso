@@ -76,4 +76,10 @@ else{
     $stmt->close();
     $stmt->null();
   }
+  static public function mdlBusCliente($nitCliente){
+    $stmt=Conexion::conectar()->prepare("select * from cliente where nit_ci_cliente=$nitCliente");
+    $stmt->execute();
+
+    return $stmt->fetch();
+  }
 }

@@ -29,7 +29,7 @@ class ControladorProducto
     $imagen = $_FILES["imgProducto"];
 $imgNombre = $imagen["name"];
 $imgTmpNombre = $imagen["tmp_name"];
-$destino = "../assest/dist/img/productos/" . $imgNombre;
+$destino = "../assest/dist/img/mercancia/" . $imgNombre;
 
 move_uploaded_file($imgTmpNombre, $destino);
     $data = array(

@@ -5,6 +5,7 @@ if (isset($ruta["query"])) {
   if (
     $ruta["query"] == "ctrRegFactura" ||
     $ruta["query"] == "ctrEditFactura" ||
+    $ruta["query"] == "ctrNumFactura" ||
     $ruta["query"] == "ctrEliFactura"
   ) {
     $metodo = $ruta["query"];
@@ -29,9 +30,20 @@ class ControladorFactura
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
     $data = array(
-      "loginFactura" => $_POST["login"],
-      "password" => $password,
-      "perfil" => "Moderador"
+      "codigo_factura" => $_POST["codigo_factura"],
+      "id_cliente" => $_POST["id_cliente"],
+      "detalle" => $_POST["detalle"],
+      "neto" => $_POST["neto"],
+      "descuento" => $_POST["descuento"],
+      "total" => $_POST["total"],
+      "fecha_emision" => $_POST["fecha_emision"],
+      "cufd" => $_POST["cufd"],
+      "cuf" => $_POST["cuf"],
+      "xml" => $_POST["xml"],
+      "id_punto_venta" => $_POST["id_punto_venta"],
+      "id_usuario" => $_POST["id_usuario"],
+      "usuario" => $_POST["usuario"],
+      "leyenda" => $_POST["leyenda"]
     );
 
     $respuesta = ModeloFactura::mdlRegFactura($data);
@@ -49,18 +61,22 @@ class ControladorFactura
   {
     require "../modelo/FacturaModelo.php";
 
-    if ($_POST["password"] == $_POST["passActual"]) {
-      $password = $_POST["password"];
-    } else {
-      $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
-    }
-
-
     $data = array(
-      "password" => $password,
-      "id" => $_POST["idFactura"],
-      "perfil" => $_POST["perfil"],
-      "estado" => $_POST["estado"]
+      "codigo_factura" => $_POST["codigo_factura"],
+      "id_cliente" => $_POST["id_cliente"],
+      "detalle" => $_POST["detalle"],
+      "neto" => $_POST["neto"],
+      "descuento" => $_POST["descuento"],
+      "total" => $_POST["total"],
+      "fecha_emision" => $_POST["fecha_emision"],
+      "cufd" => $_POST["cufd"],
+      "cuf" => $_POST["cuf"],
+      "xml" => $_POST["xml"],
+      "id_punto_venta" => $_POST["id_punto_venta"],
+      "id_usuario" => $_POST["id_usuario"],
+      "usuario" => $_POST["usuario"],
+      "leyenda" => $_POST["leyenda"],
+      "id_factura" => $_POST["id_factura"]
     );
 
     ModeloFactura::mdlEditFactura($data);
@@ -77,4 +93,14 @@ class ControladorFactura
     $respuesta = ModeloFactura::mdlEliFactura($id);
     echo $respuesta;
   }
+  static function ctrNumFactura(){
+    require "../modelo/FacturaModelo.php";
+   $respuesta=ModeloFactura::mdlNumFactura();
+   if($respuesta["max(id_factura)"]==null){
+    echo "1"; }
+    else{
+      echo $respuesta["max(id_factura)"]+1 ;
+    }
+  }
+
 }
