@@ -5,6 +5,7 @@ if (isset($ruta["query"])) {
   if (
     $ruta["query"] == "ctrRegProducto" ||
     $ruta["query"] == "ctrEditProducto" ||
+    $ruta["query"] == "ctrBusProducto" ||
     $ruta["query"] == "ctrEliProducto"
   ) {
     $metodo = $ruta["query"];
@@ -54,7 +55,7 @@ move_uploaded_file($imgTmpNombre, $destino);
     return $respuesta;
   }
 
-  static function ctrEditProducto()
+  static public function ctrEditProducto()
   {
     require "../modelo/productoModelo.php";
     $imagen = $_FILES["imgProducto"];
@@ -84,12 +85,20 @@ move_uploaded_file($imgTmpNombre, $destino);
     echo $respuesta;
   }
 
-  static function ctrEliProducto()
+  static public function ctrEliProducto()
   {
     require "../modelo/productoModelo.php";
     $id = $_POST["id"];
 
     $respuesta = Modeloproducto::mdlEliProducto($id);
     echo $respuesta;
+  }
+  static public function ctrBusProducto(){
+    require "../modelo/productoModelo.php";
+
+    $codProducto=$_POST["codProducto"];
+   $respuesta = ModeloProducto::mdlBusProducto($codProducto);
+   echo json_encode($respuesta);
+
   }
 }

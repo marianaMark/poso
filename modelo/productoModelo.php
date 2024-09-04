@@ -101,4 +101,10 @@ VALUES ('$codProducto', '$nombreProductoSin', '$nombreProducto', '$precioProduct
     $stmt->close();
     $stmt->null();
   }
+  static public function mdlBusProducto($cod){
+    $stmt=Conexion::conectar()->prepare("delete from producto where cod_producto='$cod'");
+    $stmt->execute();
+
+    return $stmt->fetch();
+  }
 }

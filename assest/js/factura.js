@@ -68,3 +68,32 @@ function verificarComunicacion(){
                 }
             })
         }
+        function busProducto(){
+        let codProducto=document.getElementById("cod_producto").value
+        
+            var obj={
+                codProducto:codProducto
+            }
+            $.ajax({
+                type:"POST",
+                url:"controlador/productoControlador.php?ctrBusProducto",
+                data:obj,
+                dataType:"json",
+                success:function(data){
+                    document.getElementById("conceptoPro").value=data["nombre_producto"];
+                    document.getElementById("uniMedida").value=data["unidad_medida"];
+                    document.getElementById("preUnitario").value=data["precio_producto"];
+          
+                    }
+            })
+        }
+
+        function calularPreProd(){
+            let cantPro=parseInt(document.getElementById("cantidadProducto").value)
+            let descProducto=parseFloat(document.getElementById("descProducto").value)
+            let preUnit=parseFloat(document.getElementById("preUnitario").value)
+
+            let preProducto=preUnit-descProducto
+   
+            document.getElementById("preTotal").value=preProducto*cantPro
+        }

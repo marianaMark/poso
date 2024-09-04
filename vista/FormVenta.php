@@ -144,14 +144,25 @@
                     <div class="form-group col-md-2">
                         <label for="">Cod. Producto</label>
                         <div class="input-group form-group">
-                            <input type="text" class="form-control" name="cod_producto" id="cod_producto">
+                        <input type="text" class="form-control" name="cod_producto" id="cod_producto" list="listaProductos">
                             <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">
+                            <button class="btn btn-outline-secondary" type="button" onclick="busProducto()">
                             <i class="fas fa-search"></i>
                             </button>
 
 
                             </div>
+                            <datalist id="listaproductos">
+                                <?php
+                                $producto=ControladorProducto::ctrInfoproductos();
+                                foreach($producto as $value){
+                                ?>
+                                <option value="<?php echo $value ["cod_producto"]; ?>"><?php echo $value ["nombre_producto"];?></option>
+                            <?php 
+                                }
+                                ?>
+
+                            </datalist>
                         </div>
                         
 
@@ -160,7 +171,7 @@
                     <div class="form-group col-md-4">
                     <label for="">Concepto</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="conceptoPro" id="conceptoPro">
+                        <input type="text" class="form-control" name="conceptoPro" id="conceptoPro" readonly>
                         </div>
                     </div>
 
@@ -174,14 +185,14 @@
                     <div class="form-group col-md-1">
                     <label for="">U. Medida</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="uniMedida" id="uniMedida">
+                        <input type="text" class="form-control" name="uniMedida" id="uniMedida" value="0" onkeyup="calcularPreProd()">
                         </div>
                     </div>
 
                     <div class="form-group col-md-1">
                     <label for="">P. Unit</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="preUnitario" id="preUnitario">
+                        <input type="text" class="form-control" name="preUnitario" id="preUnitario" readonly value="0">
                         </div>
                     </div>
 
@@ -195,7 +206,7 @@
                     <div class="form-group col-md-1">
                     <label for="">P. Total</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="preTotal" id="preTotal">
+                        <input type="text" class="form-control" name="preTotal" id="preTotal" readonly value="0.00">
                         </div>
                     </div>
                     
