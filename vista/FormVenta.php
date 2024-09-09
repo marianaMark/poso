@@ -145,7 +145,8 @@
                         <label for="">Cod. Producto</label>
                         <div class="input-group form-group">
                         <input type="text" class="form-control" name="cod_producto" id="cod_producto" list="listaProductos">
-                            <div class="input-group-append">
+                        <input type="hidden" class="form-control" name="nombreproducto_sin" id="nombreproducto_sin" list="listaProductos">    
+                        <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" onclick="busProducto()">
                             <i class="fas fa-search"></i>
                             </button>
@@ -178,15 +179,17 @@
                     <div class="form-group col-md-1">
                     <label for="">cantidad</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="cantidadProducto" id="cantidadProducto">
+                        <input type="text" class="form-control" name="cantidadProducto" id="cantidadProducto" value="0" onkeyup="calcularPreProd()">
                         </div>
                     </div>
 
                     <div class="form-group col-md-1">
                     <label for="">U. Medida</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="uniMedida" id="uniMedida" value="0" onkeyup="calcularPreProd()">
-                        </div>
+                        <input type="text" class="form-control" name="uniMedida" id="uniMedida">
+                        <input type="hidden" class="form-control" name="uniMedidaSin" id="uniMedidaSin">
+                       
+                    </div>
                     </div>
 
                     <div class="form-group col-md-1">
@@ -214,6 +217,7 @@
                     <label for="">&nbsp;</label>
                         <div class="input-group form-group">
                         <button  class="btn btn-info btn-circle form-control">
+                        <button  class="btn btn-info btn-circle form-control" onclick="agregarCarrito()"></button>
                         <i class="fas fa-plus"></i>
                         </button>
                         </div>
@@ -227,6 +231,20 @@
             </div>
 
             <div class="card-footer">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Descripcion</th>
+                            <th>cantidad</th>
+                            <th>p. unitario</th>
+                            <th>Descuebto</th>
+                            <th>P. Total</th>
+                            <th>--------</th>
+                        </tr>
+
+                        <tbody id="listaDetalle"
+                    </thead>
+                </table>
                
             </div>
         </div>
