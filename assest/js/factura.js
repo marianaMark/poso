@@ -186,3 +186,14 @@ function verificarComunicacion(){
             //console.log("Carrito actualizado:", arregloCarrito);
             dibujarTablaCarrito();
         }
+        function calcularTotal(){
+            let totalCarrito=0;
+            for (var i=0 ; i<arregloCarrito.length;i ++){
+                totalCarrito=totalCarrito+parseFloat(arregloCarrito[i].subtotal)
+            }
+            //console.log(totalCarrito)
+            document.getElementById("subTotal").value=totalCarrito
+            let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+            document.getElementById("totApagar").value=totalCarrito-descAdicional
+        }
+        

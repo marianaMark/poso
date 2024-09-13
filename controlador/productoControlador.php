@@ -64,7 +64,7 @@ move_uploaded_file($imgTmpNombre, $destino);
       if ($imagen["name"] != "") { // Si se subió una nueva imagen
           $imgNombre = $imagen["name"];
           $imgTmpNombre = $imagen["tmp_name"];
-          move_uploaded_file($imgTmpNombre, "../assets/dist/img/mercancia/" . $imgNombre);
+          move_uploaded_file($imgTmpNombre, "../assets/dist/img/mercancia/". $imgNombre);
       }
 
     $data = array(

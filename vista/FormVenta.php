@@ -153,7 +153,7 @@
 
 
                             </div>
-                            <datalist id="listaproductos">
+                            <datalist id="listaProductos">
                                 <?php
                                 $producto=ControladorProducto::ctrInfoproductos();
                                 foreach($producto as $value){
@@ -179,7 +179,8 @@
                     <div class="form-group col-md-1">
                     <label for="">cantidad</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="cantidadProducto" id="cantidadProducto" value="0" onkeyup="calcularPreProd()">
+                        <input type="text" class="form-control" name="cantidadProducto" id="cantidadProducto" 
+                        value="0" onkeyup="calcularPreProd()">
                         </div>
                     </div>
 
@@ -202,7 +203,7 @@
                     <div class="form-group col-md-1">
                     <label for="">Descuento</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="descProducto" id="descProducto">
+                        <input type="text" class="form-control" name="descProducto" id="descProducto" alue="0.00" onkeyup="calcularPreProd()>
                         </div>
                     </div>
 
@@ -242,7 +243,9 @@
                             <th>--------</th>
                         </tr>
 
-                        <tbody id="listaDetalle"
+                        <tbody id="listaDetalle">
+                            
+                        </tbody>
                     </thead>
                 </table>
                
