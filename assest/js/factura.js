@@ -207,6 +207,66 @@ function verificarComunicacion(){
             let descAdicional=parseFloat(document.getElementById("descAdicional").value)
             document.getElementById("totApagar").value=totalCarrito-descAdicional
         }
+        function solicitudCufd(){
+            return new Promise((resolve, reject)=>{
+                var obj={
+                    codigoAmbiente:2,
+                    codigoModalidad:2,
+                    codigoPuntoVenta:0,
+                    codigoPuntoVentaSpecified:true,
+                    codigoSistema:codSistema,
+                    codigoSucursal:0,
+                    nit:nitEmpresa,
+                    cuis:cuis
+                        }
+                        $.ajax({
+                            type:"POST",
+                            url:host+"api/Codigos/solicitudCufd?token="+token,
+                            data:JSON.stringify(obj),
+                            cache:false,
+                            contentType:"application/json",
+                            success:function(data){
+                                console.log(data)
+                                cufd=data["codigo"]
+                                codControlCufd=data["codigoControl"]
+                                fechaVigCufd=data["fechaVigencia"]
+        
+                                resolve (cufd)
+                            }
+                        })
+            })
+        }
+
+        function registrarNuevoCufd(){
+            solicitudCufd().then(ok=>{
+                if(ok!="" || ok!=null){
+                    var obj={
+                        "cufd":cufd,
+                        "fechaVigCufd":fechaVigCufd,
+                        "codControlCufd":codControlCufd
+                    }
+                    
+                    $.ajax({
+                        type:"POST",
+                        data:obj,
+                        url:"controlador/facturaControlador.php?ctrNuevoCufd",
+                        cache:false,
+                        success:function(data){
+                            //console.log(data)
+                            if(data=="ok"){
+                            $("#panelInfo").before("<span class='text-primary'>Cufd registrado!!!</span><br>")
+                        }
+                        else{
+                            $("#panelInfo").before("<span class='text-danger'>error de registro curfd!!!</span><br>")
+                        }
+                        }
+                        
+                    })
+                }
+            })
+        }
+        
+        
         function emitirFactura(){
             if(validarFormulario()== true){
             let date=new Date()
@@ -255,8 +315,26 @@ function verificarComunicacion(){
                         codigoPuntoVenta:0,
                         fechaEmision:fechaFactura,
                         nombreRazonSocial:rsCliente,
+                        codigoTipoDocumentoIdentidad:tpDocumento,
+                        numeroDocumento:nitCliente,
+                        complemento:"",
+                        codigoCliente:nitCliente,
+                        codigoMetodoPago:metPago,
+                        numeroTarjeta:null,
+                        montoTotal:subTotal,
+                        montoTotalSujetivoIva:totApagar,
+                        tipoCambio:1,
+                        codigoMoneda:1,
+                        montoTotalMoneda:totApagar,
+                        montoGiftCard:0,
+                        descuentoAdicional:descAdicional,
+                        codigoExcepcion:0,
+                        cafc:null,
+                        leyenda:leyenda,
+                        usuario:usuarioLogin,
+                        codigoDocumentoSector:1
                     },
-                    detalle:{}
+                    detalle:arregloCarrito
         }
     }
 }
