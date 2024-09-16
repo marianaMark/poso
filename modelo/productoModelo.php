@@ -17,7 +17,7 @@ class ModeloProducto{
 
   static public function mdlRegProducto($data){
     $codProducto = $data["cod_producto"];
-$nombreProductoSin = $data["nombre_producto_sin"];
+$nombreProductoSin = $data["cod_producto_sin"];
 $nombreProducto = $data["nombre_producto"];
 $precioProducto = $data["precio_producto"];
 $unidadMedida = $data["unidad_medida"];
@@ -25,7 +25,7 @@ $unidadMedidaSin = $data["unidad_medida_sin"];
 $imagenProducto = $data["imagen_producto"];
 $disponible = $data["disponible"];
 
-$stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, nombre_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto, disponible) 
+$stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, cod_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto, disponible) 
 VALUES ('$codProducto', '$nombreProductoSin', '$nombreProducto', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto', '$disponible')");
 
     if($stmt->execute()){
@@ -53,7 +53,7 @@ VALUES ('$codProducto', '$nombreProductoSin', '$nombreProducto', '$precioProduct
   static public function mdlEditProducto($data){
 
       $cod_producto = $data["cod_producto"];
-      $nombre_producto_sin = $data["nombre_producto_sin"];
+      $cod_producto_sin = $data["cod_producto_sin"];
       $nombre_producto = $data["nombre_producto"];
       $precio_producto = $data["precio_producto"];
       $unidad_medida = $data["unidad_medida"];
@@ -67,7 +67,7 @@ VALUES ('$codProducto', '$nombreProductoSin', '$nombreProducto', '$precioProduct
       UPDATE producto 
       SET 
           cod_producto = ' $cod_producto', 
-          nombre_producto_sin = ' $nombre_producto_sin', 
+          cod_producto_sin = ' $cod_producto_sin', 
           nombre_producto = '$nombre_producto', 
           precio_producto = ' $precio_producto ', 
           unidad_medida = '$unidad_medida', 

@@ -145,7 +145,7 @@
                         <label for="">Cod. Producto</label>
                         <div class="input-group form-group">
                         <input type="text" class="form-control" name="cod_producto" id="cod_producto" list="listaProductos">
-                        <input type="hidden" class="form-control" name="nombreproducto_sin" id="nombreproducto_sin" list="listaProductos">    
+                        <input type="hidden" class="form-control" name="codproducto_sin" id="codproducto_sin" list="listaProductos">    
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" onclick="busProducto()">
                             <i class="fas fa-search"></i>
@@ -203,14 +203,14 @@
                     <div class="form-group col-md-1">
                     <label for="">Descuento</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="descProducto" id="descProducto" alue="0.00" onkeyup="calcularPreProd()>
+                        <input type="text" class="form-control" name="descAdicional" id="descAdicional" alue="0.00" onkeyup="calcularPreProd()">
                         </div>
                     </div>
 
                     <div class="form-group col-md-1">
                     <label for="">P. Total</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="preTotal" id="preTotal" readonly value="0.00">
+                        <input type="text" class="form-control" name="totApagar" id="totApagar" readonly value="0.00">
                         </div>
                     </div>
                     

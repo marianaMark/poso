@@ -35,7 +35,7 @@ $destino = "../assest/dist/img/mercancia/" . $imgNombre;
 move_uploaded_file($imgTmpNombre, $destino);
     $data = array(
       "cod_producto" => $_POST["cod_producto"],
-      "nombre_producto_sin" => $_POST["nombre_producto_sin"],
+      "cod_producto_sin" => $_POST["cod_producto_sin"],
       "nombre_producto" => $_POST["nombre_producto"],
       "precio_producto" => $_POST["precio_producto"],
       "unidad_medida" => $_POST["unidad_medida"],
@@ -69,7 +69,7 @@ move_uploaded_file($imgTmpNombre, $destino);
 
     $data = array(
       "cod_producto" => $_POST["cod_producto"],
-      "nombre_producto_sin" => $_POST["nombre_producto_sin"],
+      "cod_producto_sin" => $_POST["cod_producto_sin"],
       "nombre_producto" => $_POST["nombre_producto"],
       "precio_producto" => $_POST["precio_producto"],
       "unidad_medida" => $_POST["unidad_medida"],

@@ -40,7 +40,7 @@
                 <tr>
                  <!---<td><?php echo $value["id_producto"]; ?></td>--->
                 <td><?php echo $value["cod_producto"]; ?></td>
-                <td><?php echo $value["nombre_producto_sin"]; ?></td>
+                <td><?php echo $value["cod_producto_sin"]; ?></td>
                 <td><?php echo $value["nombre_producto"]; ?></td>
                 <td><?php echo $value["precio_producto"]; ?></td>
                 <!--- <td><?php echo $value["unidad_medida"]; ?></td>--->
