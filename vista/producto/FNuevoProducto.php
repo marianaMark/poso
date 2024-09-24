@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="nombre_producto_sin">Código del Producto (SIN)</label>
-            <input type="number" class="form-control" name="nombre_producto_sin" id="nombre_producto_sin" min="0">
+            <input type="number" class="form-control" name="cod_producto_sin" id="cod_producto_sin" min="0">
         </div>
         <div class="form-group">
             <label for="nombre_producto">Nombre del Producto</label>
@@ -86,7 +86,7 @@ $(function () {
         required: true,
         minlength: 3
       },
-      nombre_producto_sin: {
+      cod_producto_sin: {
         required: true,
         minlength: 3,
         number:true

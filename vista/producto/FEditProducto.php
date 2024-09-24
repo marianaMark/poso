@@ -25,7 +25,7 @@ $producto=ControladorProducto::ctrInfoProducto($id);
 
         <div class="form-group">
             <label for="nombre_producto_sin">Código del Producto SIN</label>
-            <input type="number" class="form-control" name="nombre_producto_sin" id="nombre_producto_sin" value="<?php echo $producto["nombre_producto_sin"]; ?>">
+            <input type="number" class="form-control" name="cod_producto_sin" id="cod_producto_sin" value="<?php echo $producto["cod_producto_sin"]; ?>">
         </div>
 
         <div class="form-group">

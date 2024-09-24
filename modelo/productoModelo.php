@@ -17,7 +17,7 @@ class ModeloProducto{
 
   static public function mdlRegProducto($data){
     $codProducto = $data["cod_producto"];
-$nombreProductoSin = $data["cod_producto_sin"];
+$codProductoSin = $data["cod_producto_sin"];
 $nombreProducto = $data["nombre_producto"];
 $precioProducto = $data["precio_producto"];
 $unidadMedida = $data["unidad_medida"];
@@ -26,7 +26,7 @@ $imagenProducto = $data["imagen_producto"];
 $disponible = $data["disponible"];
 
 $stmt = Conexion::conectar()->prepare("INSERT INTO producto (cod_producto, cod_producto_sin, nombre_producto, precio_producto, unidad_medida, unidad_medida_sin, imagen_producto, disponible) 
-VALUES ('$codProducto', '$nombreProductoSin', '$nombreProducto', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto', '$disponible')");
+VALUES ('$codProducto', '$codProductoSin', '$nombreProducto', '$precioProducto', '$unidadMedida', '$unidadMedidaSin', '$imagenProducto', '$disponible')");
 
     if($stmt->execute()){
       return "ok";
@@ -102,7 +102,7 @@ VALUES ('$codProducto', '$nombreProductoSin', '$nombreProducto', '$precioProduct
     $stmt->null();
   }
   static public function mdlBusProducto($cod){
-    $stmt=Conexion::conectar()->prepare("delete from producto where cod_producto='$cod'");
+    $stmt=Conexion::conectar()->prepare("select * from producto where cod_producto='$cod'");
     $stmt->execute();
 
     return $stmt->fetch();

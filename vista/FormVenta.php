@@ -240,7 +240,7 @@
                             <th>p. unitario</th>
                             <th>Descuebto</th>
                             <th>P. Total</th>
-                            <th>--------</th>
+                            <th>-----</th>
                         </tr>
 
                         <tbody id="listaDetalle">

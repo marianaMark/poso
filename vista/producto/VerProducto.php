@@ -25,7 +25,7 @@ $producto=ControladorProducto::ctrInfoProducto($id);
     </tr>
     <tr>
         <th>Cod. Producto Sin</th>
-        <td><?php echo $producto['nombre_producto_sin']; ?></td>
+        <td><?php echo $producto['cod_producto_sin']; ?></td>
     </tr>
     <tr>
         <th>Descripcion</th>
