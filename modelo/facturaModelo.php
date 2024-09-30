@@ -97,7 +97,7 @@ class ModeloFactura{
     $codControlCufd=$data["codControlCufd"];
 
     $stmt=Conexion::conectar()->prepare("insert into cufd(codigo_cufd, codigo_control, fecha_vigencia) 
-    values ('$cufd','$codControlCufd','$fechaVigCufd')");
+    values('$cufd','$codControlCufd','$fechaVigCufd')");
 
     if($stmt->execute()){
         return "ok";
@@ -107,4 +107,10 @@ class ModeloFactura{
     $stmt->close();
     $stmt->null;
   }
+  static public function mdlUltimoCufd(){
+    $stmt=Conexion::conectar()->prepare("SELECT * FROM cufd WHERE id_cufd=(select max(id_cufd) from cufd);");
+        $stmt->execute();
+
+        return $stmt->fetch();
+}
 }

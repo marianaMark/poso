@@ -112,6 +112,10 @@
                                 </select>
                             </div>
                         </div>
+                        <!--panel de avisos-->
+                        <div class="callaout callaout-info direct-chat-menssages" style="height: 100px; width: 290px;">
+                            <span class="list-unstyled" id="panelInfo"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -203,22 +207,21 @@
                     <div class="form-group col-md-1">
                     <label for="">Descuento</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="descAdicional" id="descAdicional" alue="0.00" onkeyup="calcularPreProd()">
+                        <input type="text" class="form-control" name="descProducto" id="descProducto" alue="0.00" onkeyup="calcularPreProd()">
                         </div>
                     </div>
 
                     <div class="form-group col-md-1">
                     <label for="">P. Total</label>
                         <div class="input-group form-group">
-                        <input type="text" class="form-control" name="totApagar" id="totApagar" readonly value="0.00">
+                        <input type="text" class="form-control" name="preTotal" id="preTotal" readonly value="0.00">
                         </div>
                     </div>
                     
                     <div class="form-group col-md-1">
                     <label for="">&nbsp;</label>
                         <div class="input-group form-group">
-                        <button  class="btn btn-info btn-circle form-control">
-                        <button  class="btn btn-info btn-circle form-control" onclick="agregarCarrito()"></button>
+                        <button  class="btn btn-info btn-circle form-control" onclick="agregarCarrito()">
                         <i class="fas fa-plus"></i>
                         </button>
                         </div>
@@ -257,3 +260,13 @@
 
     </div>
 </div>
+<script>
+    
+   
+    setTimeout(()=>{
+      verfificarVigenciaCufd()
+    }, 4000 )
+    setTimeout(()=>{
+      extraerLeyenda()
+    }, 4000 )
+  </script>

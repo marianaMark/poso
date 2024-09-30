@@ -106,9 +106,9 @@ function verificarComunicacion(){
             let descProducto=parseFloat(document.getElementById("descProducto").value)
             let preUnit=parseFloat(document.getElementById("preUnitario").value)
 
-            let preProducto=preUnit-descProducto
+            let preProducto=preUnit*descProducto
    
-            document.getElementById("preTotal").value=preProducto*cantPro
+            document.getElementById("preTotal").value=preProducto-cantPro
         }
         var arregloCarrito=[]
 
@@ -145,11 +145,12 @@ function verificarComunicacion(){
             
             document.getElementById("cod_producto").value=""
             document.getElementById("conceptoPro").value=""
-            document.getElementById("cantidadProducto").value=0
+            document.getElementById("codproducto_sin").value=""
+            document.getElementById("cantidadProducto").value="1"
             document.getElementById("uniMedida").value=""  
+            document.getElementById("uniMedidaSin").value=""
             
-            
-            document.getElementById("preUnitario").value=""
+            document.getElementById("preUnitario").value="0.00"
             document.getElementById("descProducto").value="0.00"
             document.getElementById("preTotal").value="0.00"
             }
@@ -266,6 +267,42 @@ function verificarComunicacion(){
             })
         }
         
+        function verfificarVigenciaCufd(){
+            //fecha actual
+            let date=new Date ()
+
+            //obtener el ultimo registro de cufd de DB
+            var obj=""
+            $.ajax({
+                type:"POST",
+                url:"controlador/facturaControlador.php?ctrUltimoCufd",
+                data:obj,
+                cache:false,
+                dataType:"json",
+                success:function(data){
+
+                    let vigCufdActual=new Date(data["fecha_vigencia"])
+                    console.log(vigCufdActual)
+                    
+
+                    if(date.getTime()>vigCufdActual.getTime()){
+                        $("#panelInfo").before("<span class='text-warning'>Cufd caducado!!</span><br>")
+                        $("#panelInfo").before("<span class='text-warning'>Registrando cufd...</span><br>")
+                        registrarNuevoCufd()
+
+                    }else{
+                        $("#panelInfo").before("<span class='text-warning'>Cufd vigente,puede facturar...</span><br>")
+                        $("#panelInfo").before("<span class='text-warning'>se puede facturar, finalizados</span><br>")
+                        //Actualizando variables
+                        cufd=data["codigo_cufd"]
+                        codControlCufd=data["codigo_control"]
+                        fechaVigCufd=data["fecha_vigencia"]
+                    }
+                }
+
+        })
+    }
+    
         
         function emitirFactura(){
             if(validarFormulario()== true){
