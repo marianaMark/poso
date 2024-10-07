@@ -282,7 +282,7 @@ function verificarComunicacion(){
                 success:function(data){
 
                     let vigCufdActual=new Date(data["fecha_vigencia"])
-                    console.log(vigCufdActual)
+                    //console.log(vigCufdActual)
                     
 
                     if(date.getTime()>vigCufdActual.getTime()){
@@ -292,7 +292,6 @@ function verificarComunicacion(){
 
                     }else{
                         $("#panelInfo").before("<span class='text-warning'>Cufd vigente,puede facturar...</span><br>")
-                        $("#panelInfo").before("<span class='text-warning'>se puede facturar, finalizados</span><br>")
                         //Actualizando variables
                         cufd=data["codigo_cufd"]
                         codControlCufd=data["codigo_control"]
@@ -301,6 +300,43 @@ function verificarComunicacion(){
                 }
 
         })
+    }
+
+    function extraerLeyenda(){
+        var obj=""
+        $.ajax({
+            type:"POST",
+            url:"controlador/facturaControlador.php?crtLeyenda",
+            data:obj,
+            cache:false,
+            dataType:"json",
+            success:function(data){
+                leyenda=data["desc_leyenda"]
+            }
+        })
+        }
+    /*--==================
+validar formulario
+==================---*/
+function validarFormulario(){
+    let numFactura=document.getElementById("numFactura").value
+    let nitCliente=document.getElementById("nitCliente").value
+    let emailCliente=document.getElementById("emailCliente").value
+    let rsCliente=document.getElementById("rsCliente").value
+    
+    if(numFactura==null || numFactura.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar campos</span><br>")
+    return false
+    }else if(nitCliente==null || nitCliente.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar campos</span><br>")
+        return false
+    }else if(emailCliente==null || emailCliente.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar campos</span><br>")
+        return false
+    }else if(rsCliente==null || rsCliente.length==0){
+        $("#panelInfo").before("<span class='text-danger'>Asegurarse de llenar campos</span><br>")
+        return false}
+        return true
     }
     
         
@@ -330,14 +366,14 @@ function verificarComunicacion(){
                 codigoPuntoVentaSpecified:true,
                 codigoSistema:codSistema,
                 codigoSucursal:0,
-                cufd:"",
+                cufd:cufd,
                 cuis:cuis,
                 nit:nitEmpresa,
                 tipoFacturadoDocumento:1,
                 archivo:null,
                 fechaEnvio:fechaFactura,
                 hashArchivo:"",
-                codigoControl:"",
+                codigoControl:codControlCufd,
                 factura:{
                     cabecera:{
                         nitEmisor:nitEmpresa,

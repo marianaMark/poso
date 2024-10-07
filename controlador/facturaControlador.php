@@ -7,7 +7,8 @@ if (isset($ruta["query"])) {
     $ruta["query"] == "ctrEditFactura" ||
     $ruta["query"] == "ctrNumFactura" ||
     $ruta["query"]=="ctrUltimoCufd"||
-    $ruta["query"] == "ctrNuevoCufd" |
+    $ruta["query"] == "ctrNuevoCufd" ||
+    $ruta["query"]=="crtLeyenda"||
     $ruta["query"] == "ctrEliFactura"
   ) {
     $metodo = $ruta["query"];
@@ -119,6 +120,11 @@ class ControladorFactura
     require "../modelo/facturaModelo.php";
 
     $respuesta=ModeloFactura::mdlUltimoCufd();
+    echo json_encode($respuesta);
+}
+  static public function crtLeyenda(){
+    require "../modelo/FacturaModelo.php";
+    $respuesta=ModeloFactura::mdlLeyenda();
     echo json_encode($respuesta);
 }
 }

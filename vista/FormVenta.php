@@ -31,7 +31,6 @@
                             <label for="actEconomica">#Actividad Económica</label>
                             <select name="actEconomica" id="actEconomica" class="form-control">
                                 <option value="106140">Servicios de comercio</option>
-                                <option value="106140">Servicios de comercio</option>
                             </select>
                         </div>
 
@@ -107,7 +106,6 @@
                             <label for="">Metodo de pago</label>
                             <div class="input-group">
                                 <select name="metPago" id="metPago" class="form-control">
-                                    <option value="0"></option>
                                     <option value="1">Efectivo</option>
                                 </select>
                             </div>
@@ -241,7 +239,7 @@
                             <th>Descripcion</th>
                             <th>cantidad</th>
                             <th>p. unitario</th>
-                            <th>Descuebto</th>
+                            <th>Descuento</th>
                             <th>P. Total</th>
                             <th>-----</th>
                         </tr>
@@ -260,9 +258,8 @@
 
     </div>
 </div>
+
 <script>
-    
-   
     setTimeout(()=>{
       verfificarVigenciaCufd()
     }, 4000 )

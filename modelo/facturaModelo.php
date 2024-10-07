@@ -113,4 +113,12 @@ class ModeloFactura{
 
         return $stmt->fetch();
 }
+  static public function mdlLeyenda(){
+    $stmt=Conexion::conectar()->prepare("SELECT * FROM leyenda order by rand() limit 1"); 
+    $stmt->execute();
+
+    return $stmt->fetch();
+    $stmt->close();
+    $stmt->null;
+}
 }
