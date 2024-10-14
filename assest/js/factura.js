@@ -410,6 +410,17 @@ function validarFormulario(){
                     detalle:arregloCarrito
         }
     }
-}
+    $.ajax({
+        type:"POST",
+        url:host+"api/CompraVenta/recepcion",
+        data:JSON.stringify(obj),
+        cache:false,
+        contentType:"application/json",
+        processData:false,
+        success:function(data){
+            console.log(data)
         }
+    }) 
+}
+ }
         
