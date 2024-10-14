@@ -47,8 +47,10 @@
                             <label for="">NIT/CI</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" list="listaClientes" name="nitCliente" id="nitCliente">
+                                <input type="hidden" id="idCliente" name="idCliente">
+
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" onclick="busCliente()">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="busCliente()" onkeyup="numFactura()">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
@@ -58,7 +60,7 @@
                                 $cliente=ControladorCliente::ctrInfoClientes();
                                 foreach($cliente as $value){
                                 ?>
-                                <option value="<?php echo $value ["nit_ci_cliente"]; ?>"><?php echo $value ["razon_social_cliente"];?>
+                                <option value="<?php echo $value ["nit_ci_cliente"] ?>"><?php echo $value ["razon_social_cliente"]?>
                             </option>
                             <?php 
                                 }
@@ -92,7 +94,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Descuento</span>
                             </div>
-                            <input type="text" class="form-control" name="descAdicional" id="descAdicional" value="0.00">
+                            <input type="text" class="form-control" name="descAdicional" id="descAdicional" value="0.00"
+                            onkeyup="calcularTotal()">
                         </div>
 
                         <div class="input-group sm-3">

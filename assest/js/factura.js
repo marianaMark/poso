@@ -57,6 +57,7 @@ function verificarComunicacion(){
                    }
         
                    document.getElementById("rsCliente").value=data["razon_social_cliente"]
+                   document.getElementById("idCliente").value=data["id_cliente"]
                    numFactura()
                 }
             })
@@ -106,9 +107,9 @@ function verificarComunicacion(){
             let descProducto=parseFloat(document.getElementById("descProducto").value)
             let preUnit=parseFloat(document.getElementById("preUnitario").value)
 
-            let preProducto=preUnit*descProducto
+            let preProducto=preUnit*cantPro
    
-            document.getElementById("preTotal").value=preProducto-cantPro
+            document.getElementById("preTotal").value=preProducto-descProducto
         }
         var arregloCarrito=[]
 
@@ -302,6 +303,15 @@ function verificarComunicacion(){
         })
     }
 
+    function transformarFecha(fechaISO){
+        let fecha_iso=fechaISO.split("T")
+        let hora_iso=fecha_iso[1].split(".")
+        let fecha=fecha_iso[0]
+        let  hora=hora_iso[0]
+    
+        let fecha_hora=fecha+" "+hora
+        return fecha_hora
+    }
     function extraerLeyenda(){
         var obj=""
         $.ajax({
@@ -369,7 +379,7 @@ function validarFormulario(){
                 cufd:cufd,
                 cuis:cuis,
                 nit:nitEmpresa,
-                tipoFacturadoDocumento:1,
+                tipoFacturaDocumento:1,
                 archivo:null,
                 fechaEnvio:fechaFactura,
                 hashArchivo:"",
@@ -395,7 +405,7 @@ function validarFormulario(){
                         codigoMetodoPago:metPago,
                         numeroTarjeta:null,
                         montoTotal:subTotal,
-                        montoTotalSujetivoIva:totApagar,
+                        montoTotalSujetoIva:totApagar,
                         tipoCambio:1,
                         codigoMoneda:1,
                         montoTotalMoneda:totApagar,
@@ -419,8 +429,79 @@ function validarFormulario(){
         processData:false,
         success:function(data){
             console.log(data)
+            if(data["codigoResultado"]!=908){
+                $("#panelInfo").before("<span class='text-danger'>Error, factura no emitida!!!! </span> <br>")
+            }else{
+                $("#panelInfo").before("<span> Registrando factura..... </span> <br>")
+                let datos={
+                    codigoResultado:data["codigoResultado"],
+                    codigoRecepcion:data["datoAdicional"]["codigoRecepcion"],
+                    cuf:data["datoAdicional"]["cuf"],
+                    sentDate:data["datoAdicional"]["sentDate"],
+                    xml:data["datoAdicional"]["xml"],
+                }
+                registrarFactura(datos)
+ 
+            }
         }
     }) 
 }
+ }
+ function registrarFactura(datos){
+    let numFactura=document.getElementById("numFactura").value
+    let idCliente=document.getElementById("idCliente").value
+    let subTotal=parseFloat(document.getElementById("subTotal").value)
+    let descAdicional=parseFloat(document.getElementById("descAdicional").value)
+    //console.log("mirar" +descAdicional)
+    let totApagar=parseFloat(document.getElementById("totApagar").value)
+    //console.log(totApagar)
+    let fechaEmision=transformarFecha(datos["sentDate"])
+    let idUsuario=document.getElementById("idUsuario").value
+    let usuarioLogin=document.getElementById("usuarioLogin").innerHTML
+
+    let obj={
+        "codFactura":numFactura,
+        "idCliente":idCliente,
+        "detalle":JSON.stringify(arregloCarrito),
+        "neto":subTotal,
+        "descAdicional":descAdicional,
+        "total":totApagar,
+        "fechaEmision":fechaEmision,
+        "cufd":cufd,
+        "cuf":datos["cuf"],
+        "xml":datos["xml"],
+        "idUsuario":idUsuario,
+        "usuario":usuarioLogin,
+        "leyenda":leyenda
+    }
+    $.ajax({
+        type:"POST",
+        url:"controlador/facturaControlador.php?ctrRegistrarFactura",
+        data:obj,
+        cache:false,
+        success:function(data){
+            console.log(data)
+
+            if(data=="ok"){
+                Swal.fire({
+                    icon:"success",
+                    showConfirmButton:false,
+                    title:"Factura Registrada"
+                })
+                setTimeout(function(){
+                    location.reload()
+                }, 1000)
+            }else{
+                Swal.fire({
+                    icon:"error",
+                    showConfirmButton:false,
+                    title:"Error Registro",
+                    timer:1500
+                })
+            }
+       
+           
+        }
+    })
  }
         

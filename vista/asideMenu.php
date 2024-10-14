@@ -47,6 +47,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block" id="usuarioLogin"><?php echo $_SESSION["login"];?></a>
+          <input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $_SESSION["idUsuario"];?>">
         </div>
       </div>
 
